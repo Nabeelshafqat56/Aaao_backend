@@ -29,6 +29,7 @@ const corsOptions = {
   origin: [
     "http://localhost:3000",
     "http://localhost:5173",
+    "http://localhost:5174",
     "https://aaaogo.com",
     "https://aaaogodashboard.netlify.app",
     "https://dashboard.aaaogo.com"
@@ -137,6 +138,10 @@ connectDB()
 process.on("unhandledRejection", (err) => {
   console.log(`Error: ${err.message}`.red);
   server.close(() => process.exit(1));
+});
+
+app.get("/", (req, res) => {
+  res.json({ message: "Server is running" });
 });
 
 // Handle graceful shutdown
